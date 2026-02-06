@@ -1,0 +1,501 @@
+======================================
+
+Java PDF 2:
+------------------
+- collection(I) contains 12 common methods. practice them !
+- synchronizedList(l) vs vector ?
+- synchronizedSet(s), synchronizedMap(m)
+- LL underlying datastructure is doubleLL
+-  LL can be used to implement stack n queue
+- Comparable is used when a class has one natural order - inside class
+- Comparator is used when a class has multiple sorting - outside class
+
+- Comparable(I) with compareTo()
+- Comparator(I) with compare() & equals()
+
+- Each key,value pair in map is called Entry (I) - present inside Map(I)
+- HashTable/synchronizedMap is synchronized, HashMap is not
+- LinkedHashMap and LinkedHashSet are used in implementing Cache
+- get methods list of a class -> Method[] methods = TreeSet.class.getMethods();
+
+Collections.sort(list,comparator)
+Collections.binarySearch(list,obj1)
+Collections.binarySearch(list,obj1,comparator)
+Collections.reverse(list)
+
+Arrays.sort(array, comparator)
+
+Multithreading:
+- Thread can be defined in two ways,
+    - extend Thread(C), run()
+    - implement Runnable(I), run()
+    -> Thread has to started with start() 
+    - States:New born, ready, waiting, running, dead
+    - thread1.setPriority(5); 1-10
+    - stop()
+
+- skipped regex!
+
+Exceptions:
+- DefaultExceptionHandler: JVM shows default exception with name, desc, stacktrace
+- JVM identify the exception and check if this method or its parents have any Handling
+- Throwable (C)
+    - Exception (C) -> recoverable
+        - Checked Exceptions - checked at runtime
+        - Error (C) => UnChecked Exceptions -> not checked at runtime; non recoverable
+- Either handle potential possible exception using trycatch or mention throws 
+- we can throw Custom/checked exceptions manually and hand over it to jvm
+
+java.lang Package:
+- Object
+- String
+- StringBuffer, StringBuilder
+- Wrapper classes
+
+- shallow cloning happens with normal assignment => t2 = t1
+- deep cloning => t2 = t1.clone()
+- sb equals returns false so convert to string and compare
+- All string and wrapper objects are immutable
+- Wrapper methods: 
+construnctor -> new Integer()
+Integer.valueOf("12") - 12
+Integer.valueOf(12) - 12
+Integer i = Integer.valueOf("10010",2) - 12
+
+public int intValue(i); // 
+Integer.parseInt("12312"); // convert string to primitive
+o.toString(); // convert wrapper to string
+
+Integer.toBinaryString(123);
+String binaryString = Integer.toBinaryString(decimalNumber);
+Long.toHexaString(12);
+
+Auto unboxing & boxing from wrapper to primitive is auto done.
+
+Java new features:
+
+9 -> module-info modularized, requires, exports
+List.of() immutable list
+stable http client 
+17 -> records, pattern matching improved, sealed classes, 
+25 -> Virtual Threads
+
+filter, anymatch, allMatch, nonMatch: takes predicate
+flatmap, map: takes function
+collect: collects result into List
+
+
+
+
+
+
+
+
+
+
+
+Java PDF 1:
+------------------
+
+- Reserved words can't be used as identifiers
+- Variables are Identifiers
+- Values assigned to variables are Literals
+
+Primitive Data types:
+1) byte 8b -> Range: (- 128 to 127)
+    -> MSB is 1 for negative numbers
+    -> Usage: Handling data in terms of streams either from file or from network 
+2) short 2b; -32768 to 32767
+3) int 4b; -2^31 to 2^31-1
+4) long 8b;
+5) float 4b; 5 decimals
+6) double 8b; 15 decimals
+7) char 2b -> UNICODE ('' => 0)
+8) boolean 
+
+Literals:
+- Integral Literals 
+    - Decimal 0-9
+    - Octal 0-7 [must be prefixed with 0]
+    - Hexadecimal 0-9, A-F (or a-f)
+    [must be prefixed with 0x]
+    - Any number is defaulted to int type, except explicit l suffix
+- Floating Point Literals
+    - Any number is defaulted to double type, except explicit f suffix
+    - Exponential or Scientific notation
+
+Arrays
+- Every element in array is automatically defaulted, even for primitive data type
+- Printing an array (object) shows its classname@hashcode
+- we can construct, declare and initialize array in single line
+- For Object as Array type, allowed element type is declared object type or its child
+- Interface type, allowed element is its implementation class object
+
+Variables are classified based on purpose and its declaration position,
+    - instance: scope of object; 
+        -> in class, but outside methods or loops
+    - static: scope of class
+        -> JVM defaults instance, static variables explicitly
+    - local: scope of braces
+        -> local variables are stack variables stored in a stack
+        -> only applicable modifier for local variables is final
+
+Var-args are array implemention and index based
+    - Least priority overloaded method
+    - similar to default case in switch
+
+Main  
+- main method checks happen at JVM Runtime
+- public static void main(String... args) is a mandatory JVM configured method signature required for JVM to run our program
+
+Java Coding standards:
+- Identifiers must reflect their purpose, not x, y
+- Class = noun; starts with capital
+- Interface = adjective; starts with capital
+- methods = verb+noun; camelCase
+- variables = noun; camelCase
+- constants = fullcaps with _ 
+    -> variables are declated constants using static & final modifiers
+- Java bean = private properties, public getter, setters
+
+Operations & Assignments:
+- preincrement // int y = ++x; // x = 4; y = 5; 
+- assignment expression's final data type // int x = y+z;
+    => max(int, type of x, type of z)
+- Arithmetic exception is runtime exception and its possible only for integral operations (/,%) and not in floating data types (where infinity and NaN are allowed)
+- Bitwise complement operator (~) is only for integral data types
+- Boolean complement operator (!) is only for booleans
+- positive number are represented as it is in memory, while negative numbers are represented in twos complement. eg: ~4 = -5
+- &, | are for intergral and boolean variables
+- (a & b) -> both a and b are must computed -> low performance
+
+- Widening or Upcasting is implicitly done automatically
+- Narrowing or Downcasting is explicit done by coder
+    - Assigning bigger datatype value to smaller ones, 
+    its MSBs will be lost
+- Just like new operator, we dont have delete becoz, Garbage collector handles deletion of unused objects
+
+- Switch: fall through with no breaks is to set common action for multiple cases
+
+- for:each loop is the most convenient to iterate arrays, collections
+- In multiple loops we also have labeled break and continue
+
+- Imported classes are not loaded unless they are used anywhere in the code
+- java.lang package and current working packages are not needed to be imported
+- Universally accepted convension to name packages i.e., to use domain names in reverse
+- package is the current location where the class will be present. One java file can have only one package
+
+
+Access Modifiers:
+- Allowed for Class - public, default, final, abstract, strictfp
+- 149/255 pages noted
+
+- return type is not part of signature. Hence interfaces with same signature and different return type cant be implemented by one single class
+
+- Method overriding is called runtime polymorphism
+- Method overloading is called compiletime polymorphism or static polymorphism
+- overriding method resolution is called Dynamic method dispatch
+- To overload only names has to match, to override everything including return type has to match
+
+If child(C) method throws a checked exception, parent(C) method must throw.
+If parent throws, child may or may not throw.
+If parent(constructor) throws checked exception, compulsory c must throw.
+
+- Three pillars of OOPS - Inheritence, Polymorphism, Encapsulation
+
+
+
+======================================
+
+Questions:
+-----------
+1) Why are negative numbers stored in two's complement format ?
+    -> simplifying computers ALU/CPU computations
+2) x = 018; -> Err: Octal can't have >7 as digits
+3) Why couldn't java detect data type based on the assigned literal ?
+4) Why do we need suffix l ? x = 10l or L 
+5) float f = 123.45 fails, use 123.45f
+6) Floating point literals Exponential notation 1.2e3 = 1200.0
+7) why are local variables stored in stack ?
+8) Why is it called method hiding for static methods & method overriding for non static methods ?
+9) Why support infinity & NaN for floating numbers ?
+10) Evaluation order of operands: No precedence, evaluted always from left to right ?
+11) method resolution means ?
+
+
+===========================================
+
+
+REST API stands for Representational State Transfer API
+--------------------------------------------------------
+- everything is a resource, identified as unified resource identifier (URI or URL)
+- representation, is presentation of response to the request resource. ex: json, xml, html
+- Data is mostly exchanged in JSON format
+- HTTP is a protocol, just a transport layer with requests/responses
+- REST is an architectural style that defines APIs using http 
+- REST is stateless: 
+    - server doesnt store client state 
+    - Scalability
+    - easy load balancing
+    - fault tolerant even server crashes no session lost
+    - cacheable
+    - best practice: use nouns not verbs ex: /api/users/ and not /api/getusers/
+    - PUT replaces, PATCH modifies
+- SOAP (simple object access protocol) is heavy xml based (wsdl) for exchanging messages over network
+- Stateless Authentication using JWT (Java Web Token) faster than session-based auth
+    - HEADER.PAYLOAD.SIGNATURE
+    - Header has algorithm and tokentype: JWT,
+    - Payload has data/metadata is base64 encoded
+    -  JWT Auth flow - client sends username/pwd > server validates, generates JWT > client stores JWT as cookie > client sends jwt in every request > server validates jwt
+    - Access tokens are short lived (5-15mins)
+- States:
+    200 ok   201 created  204 no content  302 redirect 
+    400 bad request - validation failure
+    401 unauthorized - invalid authentication
+    403 forbidden - no permission [authorization failure]
+    404 not found - no resource 
+    409 conflict - duplicate/state conflict
+    500 internal server failure
+
+- Spring Boot Annotations:
+    @RestController
+    @RequestMapping("/api/users")
+
+    @GetMapping("/{id}") (@PathVariable -> URL Value)
+    @PostMapping (@RequestBody -> JSON body)
+
+Junits/Mockito Cheat Sheet
+----------------------------
+
+- Junit is unit (method, class) testing framework in Java used to verify business logic correctness at unit level.
+    - Current standard Junit 5 is Jupiter
+    - @BeforeEach, @AfterEach => runs before/after each tests
+    - @BeforeAll, @AfterAll => runs before/after all tests
+    - @Test => Test method
+
+- Assertions: 
+    assertEquals(expected,actual)
+    assertNotNull(obj)
+    assertTrue(condition)
+    assertThrows(Exception.class, ()-> method())
+    assertAll() - group assertions 
+
+- Mockito is a mocking framework used for mocking dependencies to isolate unit testing by mocking external dependencies
+    - avoids hitting DB, other APIs, message brokers
+    - Faster test, deterministic results, no dep 
+    - @Mock @InjectMocks @Spy @ExtendWith(MockitoExtension.class)
+
+- Unit Tests - 70%, Integration Tests 20% E2E Tests 10%
+
+
+Resume Cheat Sheet
+----------------------------
+
+What is Oracle Fusion Application ?
+    - SaaS enterprise Application built on Java/ADF, Oracle DB, SOA, OCI
+    - Modules like HCM, SCM, ERP, CX
+    - Its Cloud-based, but deployment & patching are managed by Oracle
+
+Whats the Fusion HCM Architecture ?
+    - UI -> ADF/Redwood UI
+    - Business Logic -> Java services 
+    - Data -> SQL/PLSQL
+    - Reporting -> Bi Publisher
+    - Integration -> REST/SOAP/HDL
+
+What is MDS Sandbox ?
+    - Metadata services Sandbox 
+    - Customize UI, page layouts, fields
+    - No Code deployment needed 
+    - Page Composer tool helps in creating isolation layer (sandbox)
+
+How does MDS Work ?
+    - Customization is stored as metadata, in mds repo
+    - When page renders, base metadata loads, custom metadata layer gets applied on top of it
+    - page, regions, fields, labels can be customized
+    - sandbox creates an isolated layer, once published gets merged to mds layer
+
+What is BIPublisher ?
+    - Reporting Tool used in Fusion that supports scheduling, bursting
+    - OTBI is for real time analytics with drag & drop UI
+    - BI publisher has reports, datamodels, complex sql data sets
+
+What is HDL HCM DATA LOADER ?
+    - Bulk data loading tool, to create objects using .dat files
+
+How do you handle Sev1 production issues ?
+    - Reproduce issue internally or test instance
+    - Check logs
+    - Workarouds/fix/RCA
+    - Debugging tools: 
+        - OCI Log analyzer, FINEST Console logs
+        - Networt HAR file
+        - SQL queries
+        - BI Report
+    - Reduce prod issues:
+        - Better logging
+        - Query optimisation
+        - fixing root causes
+        - preventive validations
+    - Regression Handling:
+        - Review the impact area
+        - Rollback potential failing code
+
+How to optimize SQL in Fusion ? (Performance & SQL)
+    - Index usage
+    - Avoid full table scan
+    - Reduce joins
+    - Use bind variables
+    - Analyze execution plan
+
+How do we ensure code quality ?
+    - Junits, Jaudits, Code Validation scripts
+    - Extensive QA Regression testing 
+    - Monitoring Post-releases 
+
+Does Fusion have microservices architecture ?
+    - Fusion uses service oriented architecture with modular services, not pure cloud-native microservices
+    - Large modular Java services, functional boundaries, shared database per pillar (HCM, ERP etc)
+    - Its not independently deployable services, not containerized, not per team CI/CD deployments
+
+What is RAG (Retrieval Augmented Generation) ?
+    - comibines LLM+Enterprise data 
+    - reduces hallucination 
+    - improves accuracy
+
+Asked to write Java code for deadlock scenario ?
+    - DeadLockExample package inside Github folder
+    - Thread lifecycle: new, runnable, blocked, waiting, timed_waiting, terminated
+    - synchronized(this) locks object or class
+    - volatile boolean flag; // Does NOT guarantee atomicity
+    - AtmoicInteger count = new AtomicInteger(0); count.incrementAntGet();
+    - Deadlock prevention: lock ordering, timeout locks 
+    - Livelock: thread is active, but no progress 
+    - Starvation: thread never gets CPU
+    - wait() releases lock of object, needs sync
+    - sleep() holds lock, its thread method
+    - notify() wakes one waiting thread
+    - notifyAll() wakes all
+    - ReentrantLock can be lock, unlock
+    - ConcurrentHashMap allows concurrent reads and writes without full locking.
+    - BlockingQueue handles synchronization internally.
+    - Threadlocal ? [ThreadLocal provides thread-confined variables.]
+
+What is Kafka ?
+- Distributed event-streaming platform
+- event driven architecture
+- asynchronous communication
+- topic: logical stream of records
+- broker is kafka server, stores partition
+- producer publishes messages to topic
+- consumer reads messages from broker
+- ActiveMQ → JMS-based, traditional
+- “Kafka is ideal for event-driven, scalable systems, but Oracle Fusion relies more on Oracle AQ and OCI Streaming Service due to strong transactional needs, database coupling, and enterprise consistency requirements.”
+
+Questions on Design Patterns (Mostly on Strategy pattern) ?
+- Strategy Pattern encapsulates multiple algorithms behind a common interface, allowing behavior to be selected at runtime without modifying existing code. It helps eliminate conditional logic and follows the Open–Closed Principle
+- Yes, a strategy must be selected dynamically. Strategy pattern doesn’t remove the selection entirely, but it centralizes and encapsulates behavior, avoiding scattered conditional logic, making code maintainable and open for extension.”
+- Structure of Strategy Pattern
+    Strategy Interface
+    Concrete Strategy classes
+    Context class (uses the strategy)
+- Spring heavily relies on Strategy Pattern to allow pluggable behaviors via interfaces.
+
+- Behavioral patterns: Strategy, Observer, Command, Template, Chain of Responsibility
+- Creational patterns: Singleton, Factory, Builder, Abstract Factory
+- Structural patterns: Adapter, Decorator, Facade, Proxy
+
+Patterns, solid principles ?
+Java EE/ADF ?
+Collections, Streams
+Exceptions
+
+- strategy pattern
+- singleton creates static instance and getter returns only one instance.
+- factory pattern encapsulates object creation based on selected type
+- observer pattern decouples sender and receiver logic 
+- builder pattern for stepbystep construction of complex objects. 
+    - chaining like streams
+    - each method returns object instance to support chain 
+
+Functional interfaces ?
+
+    Predicate<Integer> isEven = (num) -> num%2==0;
+    sop(isEven(5));
+
+    Consumer<String> printer = (text) -> SOP(text);
+    printer("Hello World");
+
+    Supplier<Double> random = ()-> Math.random();
+    random.getValue();
+
+    Function<String,Integer> stringlength = (str)->str.length;
+    sop(stringlength.apply("Java"));
+
+What are Streams ?
+    - Collection can be converted to stream using .stream()
+    - Intermediate operations
+        filter map distinct sorted 
+    - .collect(Collectors.toList())
+
+SOLID principles ?
+    - SOLID principles help in enhancing loose coupling
+    - Single Responsibility [“Each class should do one thing and do it well.”]
+    - Open Closed Principle [Open for extension, closed for modification]
+    - Liskov Substitution Princple (LSP) [Subclass should not break parent’s behavior.]
+    - Interface segregation principle ISP [Don’t force classes to implement unused methods]
+    - Dependency Inversion principle dip [Depend on abstractions, not concrete classes “High-level modules should not depend on low-level modules.”]
+
+===========================================
+
+
+Core JAVA Questions:
+
+JVM Architecture:
+
+JVM is a runtime engine,
+- executes java bytecode
+- provides platform independence
+- manages memory, threads, garbage collection
+
+1) Class loader,
+    - loading: reads .class file, creates class object in method area
+    - linking: checks bytecode safety, allocates memory,resolves ref's
+    - initialization: of static variables, executes static blocks 
+
+2) Run time Area (Memory Area):
+- Heap area: stores objects, instance variables, shared across threads, managed by GC
+- Stack memory: stores method calls, local variables/ref, thread specific
+- Method Area: stores class-level metadata
+- PeramGen < Java 8, Later MetaSpace ( special space in Heap)
+- PermGen caused OutOfMemoryError frequently; Metaspace grows dynamically.
+- Metaspace reduces class-loader memory leaks.
+
+3) Execution Engine,
+- Interpreter executes bytecode line by line
+- JIT Compiler converts bytecode to native machine code ^'s perforamance
+
+4) Garbage Collector 
+- Many GC Alog's, Java9 default is G1 GC 
+- It works only on Heap, not Stack
+- Young Gen frequent GC, Old Gen infrequent GC
+
+JVM vs JRE vs JDK:
+- JVM is runtime engine, executes bytecode
+- JRE = JVM + Libraries [End User uses]
+- JDK = JRE + Compiler + Debugger + dev Tools [Developer uses]
+
+Just-In-Time JIT Compilation:
+- Converts bytecode to nativecode at runtime,
+- ^'s performance by avoiding repeated interpretation
+- Compiles Hot methods (freq executed). This is decided by JVM Hotspot
+
+What causes OutOfMemoryError ?
+- Heap exhaustion
+- Metaspace overflow
+- Too many threads
+- Memory leaks in Java are logical, not pointer-based
+- OutOfMemory is for Heap memory
+- StackOverFlow is for Stack memory
+
+
